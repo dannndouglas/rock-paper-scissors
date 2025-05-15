@@ -9,7 +9,6 @@ function getComputerChoice() {
     } else {
         computerChoice = "scissors";
     }
-    console.log(randomNumber);
     return computerChoice;
 }
 
@@ -20,14 +19,21 @@ function getUserChoice() {
 }
 
 //Count scores
+let userScoreDisplay = document.querySelector("#userScore");
+let computerScoreDisplay = document.querySelector("#computerScore");
 let userScore = 0;
 let computerScore = 0;
 
 //Play rounds
 let rounds = 0;
+let playButtons = document.querySelector("#playButtons");
+let resultsDisplay = document.querySelector("#results");
+playButtons.addEventListener("click", (e) => {
+    playRound(e.target.id, getComputerChoice());
+})
 
 function playRound (userChoice, computerChoice) {
-    
+    resultsDisplay.textContent = ''
     let userWin = (
         (userChoice === 'rock' && computerChoice === 'scissors') ||
         (userChoice === 'paper' && computerChoice === 'rock') ||
@@ -35,30 +41,31 @@ function playRound (userChoice, computerChoice) {
     );
 
     if (userChoice === computerChoice) {
-        console.log('Tie!')
+        resultsDisplay.textContent = 'Tie!';
         return;
     } else if (userWin) {
-        console.log('You win this round! ' + userChoice + ' beats ' + computerChoice + '.')
+        resultsDisplay.textContent = userChoice + ' beats ' + computerChoice + '.' + 'You win this round!';
         userScore++;
     } else {
-        console.log('You lose this round! ' + computerChoice + ' beats ' + userChoice + '.')
+        resultsDisplay.textContent = computerChoice + ' beats ' + userChoice + '.' + 'You lose this round!';
         computerScore++;
+    }
+    userScoreDisplay.textContent = userScore;
+    computerScoreDisplay.textContent = computerScore;
+
+    if (userScore === 5 || computerScore === 5) {
+        userScore > computerScore ?
+        announceWinner("You") :
+        announceWinner("The computer");
     }
 }
 
-//Play games
-function playGames () {
-    if (rounds < 5) {
-        let userSelection = getUserChoice();
-        let computerSelection = getComputerChoice();
-        rounds++;
-        playRound(userSelection, computerSelection);
-        playGames();
-    } else if (userScore === computerScore) {
-        console.log("Game finished! Result: Tie.")
-    } else {
-        let winner = userScore > computerScore ? "You" : "The computer";
-        console.log(winner + ' won this game!')
-    }
+//Check announce winner
+function announceWinner (winner) {
+    resultsDisplay.textContent = "";
+    alert(winner + " win this game");
+    userScore = 0;
+    computerScore = 0;
+    userScoreDisplay.textContent = 0;
+    computerScoreDisplay.textContent = 0;
 }
-playGames()
