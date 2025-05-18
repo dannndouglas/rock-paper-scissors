@@ -12,12 +12,6 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-//Get user choice
-function getUserChoice() {
-    let userChoice = (prompt("Rock, paper ou scissors?")).toLowerCase();
-    return userChoice
-}
-
 //Count scores
 let userScoreDisplay = document.querySelector("#userScore");
 let computerScoreDisplay = document.querySelector("#computerScore");
@@ -25,12 +19,15 @@ let userScore = 0;
 let computerScore = 0;
 
 //Play rounds
-let rounds = 0;
 let playButtons = document.querySelector("#playButtons");
 let resultsDisplay = document.querySelector("#results");
 playButtons.addEventListener("click", (e) => {
     playRound(e.target.id, getComputerChoice());
 })
+
+function capitalizeFirst(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 function playRound (userChoice, computerChoice) {
     resultsDisplay.textContent = ''
@@ -44,19 +41,23 @@ function playRound (userChoice, computerChoice) {
         resultsDisplay.textContent = 'Tie!';
         return;
     } else if (userWin) {
-        resultsDisplay.textContent = userChoice + ' beats ' + computerChoice + '.' + 'You win this round!';
+        let msg = userChoice + ' beats ' + computerChoice + '.' + ' You win this round!';
+        resultsDisplay.textContent = capitalizeFirst(msg);
         userScore++;
     } else {
-        resultsDisplay.textContent = computerChoice + ' beats ' + userChoice + '.' + 'You lose this round!';
+        let msg = computerChoice + ' beats ' + userChoice + '.' + ' You lose this round!';
+        resultsDisplay.textContent = capitalizeFirst(msg);
         computerScore++;
     }
     userScoreDisplay.textContent = userScore;
     computerScoreDisplay.textContent = computerScore;
 
     if (userScore === 5 || computerScore === 5) {
-        userScore > computerScore ?
-        announceWinner("You") :
-        announceWinner("The computer");
+        setTimeout(() => {
+            userScore > computerScore ?
+            announceWinner("You") :
+            announceWinner("The computer");
+        }, 100);
     }
 }
 
