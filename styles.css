@@ -1,3 +1,38 @@
+/* Language toggle button */
+.lang-toggle {
+    position: fixed;
+    top: 18px;
+    right: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.7rem;
+    z-index: 100;
+    outline: none;
+    transition: transform 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+    padding: 0.2em 0.4em;
+}
+.lang-toggle:active {
+    transform: scale(1.08);
+}
+.flag {
+    font-size: 2.1rem;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1;
+    width: 2.2rem;
+    height: 2.2rem;
+    transition: opacity 0.2s;
+    user-select: none;
+    pointer-events: none;
+}
+/* For language toggle, ensure main is not covered */
+body {
+    position: relative;
+}
 body {
     background: linear-gradient(120deg, #f8fafc 0%, #dbeafe 100%);
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -84,7 +119,7 @@ h1 {
 }
 
 .results {
-    min-height: 2.2rem;
+    min-height: 3.1rem;
     font-size: 1.15rem;
     color: #0f172a;
     margin-top: 0.5rem;

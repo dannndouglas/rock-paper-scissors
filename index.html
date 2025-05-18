@@ -7,26 +7,30 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <button id="langToggle" class="lang-toggle" title="Switch language">
+        <span id="flag-en" class="flag" aria-label="English" role="img">🇺🇸</span>
+        <span id="flag-pt" class="flag" aria-label="Português (Brasil)" role="img" style="display:none">🇧🇷</span>
+    </button>
     <main>
-        <h1>Rock Paper Scissors</h1>
+        <h1 id="gameTitle">Rock Paper Scissors</h1>
         <div class="scoreboard">
             <div class="score user">
-                <span class="label">You</span>
+                <span class="label" id="labelUser">You</span>
                 <span id="userScore" class="score-value">0</span>
             </div>
             <div class="score computer">
-                <span class="label">Computer</span>
+                <span class="label" id="labelComputer">Computer</span>
                 <span id="computerScore" class="score-value">0</span>
             </div>
         </div>
         <div id="playButtons" class="buttons">
-            <button id="rock" class="game-btn">✊ Rock</button>
-            <button id="paper" class="game-btn">✋ Paper</button>
-            <button id="scissors" class="game-btn">✌️ Scissors</button>
+            <button id="rock" class="game-btn"><span class="btn-emoji">✊</span> <span class="btn-label" id="btnRock">Rock</span></button>
+            <button id="paper" class="game-btn"><span class="btn-emoji">✋</span> <span class="btn-label" id="btnPaper">Paper</span></button>
+            <button id="scissors" class="game-btn"><span class="btn-emoji">✌️</span> <span class="btn-label" id="btnScissors">Scissors</span></button>
         </div>
         <div id="results" class="results"></div>
     </main>
-<script src="script.js"></script>    
+<script src="script.js"></script>
 </body>
 
 </html>
